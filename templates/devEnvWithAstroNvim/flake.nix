@@ -15,7 +15,7 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
 
-      astronvim = import ./snippets/editors/astronvim.nix {
+      astronvim = import ../../snippets/editors/astronvim.nix {
         inherit pkgs;
         templateSrc = astronvim-template;
       };
@@ -24,5 +24,5 @@
         packages = astronvim.packages;
         shellHook = astronvim.shellHook;
       };
-    }
+    };
 }
