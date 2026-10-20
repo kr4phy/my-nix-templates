@@ -16,7 +16,6 @@
     in {
       devShells.${system}.default = pkgs.mkShell {
         packages = oh-my-zsh-setups.packages;
-        shellHook = oh-my-zsh-setups.shellHook;
       };
     };
 }

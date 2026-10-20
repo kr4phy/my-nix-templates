@@ -2,30 +2,23 @@
 
 let
   zsh = pkgs.writeShellScriptBin "zsh" ''
-    export ZDOTDIR="$HOME/.nix/config/zsh"
-    
-    mkdir -p "$ZDOTDIR"
+    zsh_config_dir="''${ZDOTDIR:-$PWD/.nix/config/zsh}"
+    zshrc="$zsh_config_dir/.zshrc"
 
-    if [ ! -f "$ZDOTDIR/.zshrc" ]; then
-      cat > "$ZDOTDIR/.zshrc" << 'ZSHRC'
-export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"
+    mkdir -p "$zsh_config_dir"
 
-# Configure oh-my-zsh plugins and theme
-ZSH_THEME="robbyrussell"
-
-plugins=(
-  git
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-)
-
-source "$ZSH/oh-my-zsh.sh"
-ZSHRC
-
-    exec ${pkgs.zsh}/bin/zsh "$@"
+    if [ ! -f "$zshrc" ]; then
+      printf '%s\n' \
+        'export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh"' \
+        'ZSH_THEME="cypher"' \
+        'plugins=(git)' \
+        'source "$ZSH/oh-my-zsh.sh"' \
+        'source "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"' \
+        'source "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"' \
+        > "$zshrc"
     fi
 
-
+  export ZDOTDIR="$zsh_config_dir"
     exec ${pkgs.zsh}/bin/zsh "$@"
   '';
 in {
@@ -35,5 +28,5 @@ in {
     oh-my-zsh
     zsh-syntax-highlighting
     zsh-autosuggestions
-  ]
+  ]);
 }
