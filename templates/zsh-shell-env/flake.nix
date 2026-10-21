@@ -8,14 +8,17 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+      };
 
-      oh-my-zsh-setups = import ../../snippets/shells/oh-my-zsh.nix {
+      oh-my-zsh-nix = import ../../snippets/shells/oh-my-zsh.nix {
         inherit pkgs;
       };
+      
     in {
       devShells.${system}.default = pkgs.mkShell {
-        packages = oh-my-zsh-setups.packages;
+        packages = oh-my-zsh-nix.packages;
       };
     };
 }
