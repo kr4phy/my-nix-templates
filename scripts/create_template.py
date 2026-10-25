@@ -1,27 +1,26 @@
 #!/usr/bin/env python3
+"""
+Create a new Nix flake from a template.
+"""
 
+import argparse
+import math
 import re
-from pathlib import Path
 import shutil
 import subprocess
 import sys
-import argparse
-import json
+from pathlib import Path
+
+from lib.utils import (
+    IDENTIFIER_RE,
+    find_repo_root,
+    load_metadata,
+    merge_inputs,
+    resolve_module_path,
+    validate_module_arguments,
+)
 
 MARKERS = ("INPUTS_BLOCK", "ARGS_BLOCK", "MODULES_BLOCK")
-
-IDENTIFIER_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_'-]*$")
-
-
-def find_repo_root() -> Path:
-    # Find the template repo root.
-    script_dir = Path(__file__).resolve().parent
-
-    for directory in (script_dir, *script_dir.parents):
-        if (directory / "templates").is_dir() and (directory / "nix-modules").is_dir():
-            return directory
-
-    raise RuntimeError("Could not find the template repo root.")
 
 
 def parse_args() -> argparse.Namespace:
@@ -47,80 +46,6 @@ def parse_args() -> argparse.Namespace:
         help="The output directory for the new flake.nix file. (default: current working directory)",
     )
     return parser.parse_args()
-
-
-def load_metadata(module_path: Path) -> dict:
-    # Read and validate the JSON metadata in Nix comments at the top of the module file.
-    nix_source = module_path.read_text(encoding="utf-8")
-
-    pattern = re.compile(
-        r"METADATA_BLOCK_START\s*(.*?)\s*METADATA_BLOCK_END",
-        re.DOTALL,
-    )
-    matches = pattern.findall(nix_source)
-
-    if len(matches) != 1:
-        raise ValueError(
-            f"{module_path}: Expected exactly one metadata block, found {len(matches)}."
-        )
-
-    try:
-        metadata = json.loads(
-            matches[0],
-            parse_constant=lambda value: (_ for _ in ()).throw(
-                ValueError(f"Invalid JSON value: {value}")
-            ),
-        )
-    except (json.JSONDecodeError, ValueError) as e:
-        raise ValueError(f"{module_path}: Invalid JSON in metadata block: {e}") from e
-
-    if not isinstance(metadata, dict):
-        raise ValueError(f"{module_path}: Metadata block must be a JSON object.")
-
-    inputs = metadata.get("inputs", {})
-    module_args = metadata.get("moduleArgs", {})
-
-    if not isinstance(inputs, dict):
-        raise ValueError(
-            f"{module_path}: 'inputs' in metadata block must be a JSON object."
-        )
-
-    if not isinstance(module_args, dict):
-        raise ValueError(
-            f"{module_path}: 'moduleArgs' in metadata block must be a JSON object."
-        )
-
-    for input_name, config in inputs.items():
-        if not isinstance(input_name, str):
-            raise ValueError(f"{module_path}: Invalid Nix input name: {input_name!r}")
-
-        if input_name in {"self", "nixpkgs"}:
-            raise ValueError(
-                f"{module_path}: '{input_name}' is already provided by the template."
-            )
-
-        if not isinstance(config, dict):
-            raise ValueError(
-                f"{module_path}: Input '{input_name}' configuration must be a JSON object."
-            )
-
-        if not isinstance(config.get("url"), str):
-            raise ValueError(
-                f"{module_path}: Input '{input_name}' requires a string 'url'."
-            )
-
-    for arg_name, input_name in module_args.items():
-        if not isinstance(arg_name, str) or not IDENTIFIER_RE.fullmatch(arg_name):
-            raise ValueError(
-                f"{module_path}: Invalid Nix module argument name: {arg_name!r}"
-            )
-
-        if not isinstance(input_name, str) or not IDENTIFIER_RE.fullmatch(input_name):
-            raise ValueError(
-                f"{module_path}: Invalid Nix input reference for '{arg_name}': {input_name!r}"
-            )
-
-    return metadata
 
 
 def nix_string(value: str) -> str:
@@ -158,8 +83,8 @@ def to_nix(value, indent: int = 0) -> str:
         return str(value)
 
     if isinstance(value, float):
-        if value != value or value in (float("inf"), float("-inf")):
-            raise ValueError(f"NaN and Infinity are not supported in Nix metadata.")
+        if not math.isfinite(value):
+            raise ValueError("NaN and Infinity are not supported in Nix metadata.")
         return repr(value)
 
     if isinstance(value, list):
@@ -176,7 +101,7 @@ def to_nix(value, indent: int = 0) -> str:
         lines = []
         for key, item in value.items():
             if not isinstance(key, str):
-                raise ValueError(f"Nix attribute name must be a string: {key!r}")
+                raise TypeError(f"Nix attribute name must be a string: {key!r}")
 
             lines.append(
                 " " * (indent + 2)
@@ -188,43 +113,6 @@ def to_nix(value, indent: int = 0) -> str:
     raise ValueError(
         f"Unsupported value type for Nix conversion: {type(value).__name__}"
     )
-
-
-def resolve_module_path(modules_root: Path, requested: str) -> Path:
-    # Resolve a module path relative to the module root.
-    relative = Path(requested)
-
-    if relative.is_absolute() or ".." in relative.parts:
-        raise ValueError(f"Invalid module path: {requested!r}")
-
-    if relative.suffix == "":
-        relative = relative.with_suffix(".nix")
-
-    source = (modules_root / relative).resolve()
-
-    if not source.is_relative_to(modules_root.resolve()):
-        raise ValueError(f"Module path escapes nix-modules/: {requested!r}")
-
-    if not source.is_file():
-        raise FileNotFoundError(f"Module not found: {requested}")
-
-    return source
-
-
-def merge_inputs(modules: list[tuple[Path, dict]]) -> dict:
-    # Merge the inputs from multiple modules, checking for conflicts.
-    merged = {}
-
-    for path, metadata in modules:
-        for name, config in metadata.get("inputs", {}).items():
-            if name in merged and merged[name] != config:
-                raise ValueError(
-                    f"Conflicting definitions for flake input {name!r} "
-                    f"(found in {path})."
-                )
-            merged[name] = config
-
-    return merged
 
 
 def generate_inputs_block(inputs: dict) -> str:
@@ -325,14 +213,7 @@ def main() -> int:
 
     inputs = merge_inputs(selected)
 
-    known_values = set(inputs) | {"pkgs", "self", "nixpkgs"}
-
-    for source, metadata in selected:
-        for arg_name, input_name in metadata.get("moduleArgs", {}).items():
-            if input_name not in known_values:
-                raise ValueError(
-                    f"{source}: Module argument {arg_name!r} references unknown input {input_name!r}."
-                )
+    validate_module_arguments(selected, inputs)
 
     flake = template_file.read_text(encoding="utf-8")
 
@@ -378,11 +259,13 @@ def main() -> int:
 
     if git_root:
         relative_files = [
-            str(path.resolve().relative_to(git_root).as_posix()) for path in output_files
+            str(path.resolve().relative_to(git_root).as_posix())
+            for path in output_files
         ]
 
         result = subprocess.run(
-            ["git", "-C", str(git_root), "add", "-N", "--", *relative_files], check=False
+            ["git", "-C", str(git_root), "add", "-N", "--", *relative_files],
+            check=False,
         )
 
         if result.returncode != 0:

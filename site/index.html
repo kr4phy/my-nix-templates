@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description"
+        content="Reusable Nix templates and modules for setting up development environments quickly and easily.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>My Nix Templates - kr4phy.github.io</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" class="contrast"><strong>kr4phy.github.io</strong></a></li>
+            </ul>
+            <ul>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="https://github.com/kr4phy/my-nix-templates" target="_blank" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="navbar-spacer"></div>
+    <main class="container">
+        <section>
+            <h1>My Nix Templates</h1>
+            <p class="lead">Nix templates and modules for setting up development environments quickly.</p>
+        </section>
+
+        <section id="templates">
+            <h2>Available Templates</h2>
+            <p>Templates available in this repository:</p>
+            <div class="overflow-auto">
+                <div class="horizontal-scroll">
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/templates/default-template">default-template</a>
+                        </header>
+                        <p>Minimal template for custom configurations</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/templates/dev-env-with-astronvim">dev-env-with-astronvim</a>
+                        </header>
+                        <p>Development environment with AstroNvim editor</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/templates/shell-scripting-env">shell-scripting-env</a>
+                        </header>
+                        <p>Shell scripting environment with oh-my-zsh, oh-my-posh, oh-my-bash</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/templates/dev-essentials">dev-essentials</a>
+                        </header>
+                        <p>General development environment with essential tools</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a href="https://github.com/kr4phy/my-nix-templates/tree/main/templates/cl-dev">cl-dev</a>
+                        </header>
+                        <p>Common Lisp development environment</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules">
+            <h2>Available Modules</h2>
+            <p>Available modules grouped by category:</p>
+
+            <h3>Editors</h3>
+            <div class="overflow-auto">
+                <div class="horizontal-scroll">
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/editors/astronvim.nix">AstroNvim</a>
+                        </header>
+                        <p>Neovim with AstroNvim configuration</p>
+                    </article>
+                </div>
+            </div>
+
+            <h3>Languages</h3>
+            <div class="overflow-auto">
+                <div class="horizontal-scroll">
+                    <article class="mini-card">
+                        <header>
+                            <a href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/languages/python">Python 3.14</a>
+                        </header>
+                        <p>Python 3.14 with pip, pydevd, pyright</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/languages/nodejs">Node.js</a>
+                        </header>
+                        <p>fnm, pnpm, Yarn version managers</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/languages/nix">Nix</a>
+                        </header>
+                        <p>Nix development tools</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/languages/lisp">LISP</a>
+                        </header>
+                        <p>Common Lisp with clisp and quicklisp, Scheme with racket and guile</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/languages/dotnet">.NET</a>
+                        </header>
+                        <p>.NET SDK and runtime</p>
+                    </article>
+                </div>
+            </div>
+
+            <h3>Shells</h3>
+            <div class="overflow-auto">
+                <div class="horizontal-scroll">
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/shells/oh-my-zsh.nix">oh-my-zsh</a>
+                        </header>
+                        <p>Zsh with oh-my-zsh, syntax highlighting, auto-suggestions</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/shells/oh-my-posh.nix">oh-my-posh</a>
+                        </header>
+                        <p>PowerShell with oh-my-posh</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/shells/oh-my-bash.nix">oh-my-bash</a>
+                        </header>
+                        <p>Bash with oh-my-bash</p>
+                    </article>
+                </div>
+            </div>
+
+            <h3>Utilities</h3>
+            <div class="overflow-auto">
+                <div class="horizontal-scroll">
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/utilities/dev-essentials.nix">dev-essentials</a>
+                        </header>
+                        <p>git, curl, wget, htop, tmux, neovim, ripgrep</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/nix-modules/utilities/cmake.nix">cmake</a>
+                        </header>
+                        <p>cmake, ninja, pkg-config</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="scripts">
+            <h2>Scripts</h2>
+            <p>Tools for managing the .nix files:</p>
+            <div class="overflow-auto">
+                <div class="horizontal-scroll">
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/scripts/create-template.py">create-template.py</a>
+                        </header>
+                        <p>Create a new flake.nix from a template with modules</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/scripts/list_modules.py">list_modules.py</a>
+                        </header>
+                        <p>List all available modules</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/scripts/validate_modules.py">validate_modules.py</a>
+                        </header>
+                        <p>Validate module structure</p>
+                    </article>
+                    <article class="mini-card">
+                        <header>
+                            <a
+                                href="https://github.com/kr4phy/my-nix-templates/tree/main/scripts/new_module.py">new_module.py</a>
+                        </header>
+                        <p>Create a new module skeleton</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About</h2>
+            <p>This is a collection of Nix flake templates and modules for setting up development environments. You can use Python scripts to create, list, and validate templates or modules.</p>
+
+            <h3>Requirements</h3>
+            <ul>
+                <li>Nix (tested with Nix 2.35.3)</li>
+                <li>Git</li>
+                <li>Python 3.x (for scripts)</li>
+            </ul>
+
+            <h3>Platform Support</h3>
+            <ul>
+                <li><strong>Linux (x86_64):</strong> Supported</li>
+                <li><strong>macOS (aarch64):</strong> Not tested, but likely supported</li>
+                <li><strong>Windows (WSL2):</strong> Supported</li>
+                <li><strong>Windows (Native):</strong> Not supported (due to lack of Nix support)</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p><a href="https://github.com/kr4phy/my-nix-templates" target="_blank">My Nix Templates</a> &copy; 2026 kr4phy. All rights reserved. MIT License.</p>
+    </footer>
+    <style>
+        header nav {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            padding: 5px 15px;
+            z-index: 1000;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header nav {
+                background: rgba(0, 0, 0, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            header nav a {
+                color: inherit;
+            }
+        }
+
+        header nav ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul:first-child {
+            margin-right: auto;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 20px 15px;
+            margin-top: auto;
+            background: var(--color-page);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .navbar-spacer {
+            height: 60px;
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .mini-card {
+            min-width: 280px;
+            max-width: 320px;
+            min-height: 240px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .mini-card header {
+            margin-bottom: 0.5rem;
+        }
+
+        .mini-card header a {
+            font-weight: 600;
+            color: var(--color-Primary-500);
+        }
+
+        .mini-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            scroll-margin-top: 120px;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        h3 {
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .mini-card {
+                min-width: 240px;
+            }
+
+            .horizontal-scroll {
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
+</body>
+
+</html>
