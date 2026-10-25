@@ -111,7 +111,7 @@ my-project/
 python list_modules.py [options]
 ```
 
-### ⚙️ Options
+### ⚙️ Options (WIP, NOT IMPLEMENTED)
 
 | Option | Required | Default | Description |
 |--------|----------|---------|-------------|
@@ -129,68 +129,6 @@ python list_modules.py [options]
 python list_modules.py
 ```
 
-#### List only language modules
-```bash
-python list_modules.py --category languages
-```
-
-#### List Python-related modules
-```bash
-python list_modules.py --search python
-```
-
-#### Output in JSON format
-```bash
-python list_modules.py --json
-```
-
-#### Show directory tree
-```bash
-python list_modules.py --tree
-```
-
-### 📊 Sample Output
-
-```
-📚 Available Modules
-
-🖥️  Editors (1)
-  • astronvim.nix - Neovim with AstroNvim configuration
-    Tags: neovim, editor, astronvim
-
-💻 Languages (8)
-  • dotnetdevpkgs.nix - .NET development packages
-    Tags: dotnet, csharp, .net
-  • python314.nix - Python 3.14 development environment
-    Tags: python, pip, virtualenv
-  • fnm.nix - Node.js version manager
-    Tags: nodejs, fnm, version-manager
-  • pnpm.nix - Node.js with pnpm package manager
-    Tags: nodejs, pnpm, package-manager
-  • yarn.nix - Node.js with Yarn package manager
-    Tags: nodejs, yarn, package-manager
-  • nix.nix - Nix development environment
-    Tags: nix, nixpkgs, development
-  • common-lisp.nix - Common Lisp development
-    Tags: lisp, common-lisp, clisp
-  • scheme.nix - Scheme development
-    Tags: lisp, scheme, racket
-
-🐚 Shells (3)
-  • oh-my-zsh.nix - Oh-My-Zsh shell configuration
-    Tags: zsh, shell, oh-my-zsh
-  • oh-my-posh.nix - Oh-My-Posh prompt for PowerShell
-    Tags: powershell, prompt, oh-my-posh
-  • oh-my-bash.nix - Oh-My-Bash shell configuration
-    Tags: bash, shell, oh-my-bash
-
-🔧 Utilities (2)
-  • dev-essentials.nix - Essential development tools
-    Tags: git, curl, htop, tmux
-  • cmake.nix - CMake build system
-    Tags: cmake, build, ninja
-```
-
 ---
 
 ## 🔍 validate_modules.py
@@ -203,7 +141,7 @@ python list_modules.py --tree
 python validate_modules.py [options] [module_paths...]
 ```
 
-### ⚙️ Options
+### ⚙️ Options (WIP, NOT IMPLEMENTED)
 
 | Option | Required | Default | Description |
 |--------|----------|---------|-------------|
@@ -220,20 +158,6 @@ python validate_modules.py [options] [module_paths...]
 python validate_modules.py
 ```
 
-#### Validate specific modules
-```bash
-python validate_modules.py nix-modules/languages/python/python314.nix
-```
-
-#### Strict validation
-```bash
-python validate_modules.py --strict
-```
-
-#### Attempt to auto-fix issues
-```bash
-python validate_modules.py --fix
-```
 
 ### ✅ What Gets Validated
 
