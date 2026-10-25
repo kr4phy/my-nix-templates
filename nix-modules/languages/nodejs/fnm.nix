@@ -3,6 +3,13 @@
 in {
     packages = [
         pkgs.fnm
+        pkgs.pnpm
+
+        # editor for js/ts
+        pkgs.vscode
+        pkgs.vscode-fhs
+        # Uncomment this to use JetBrains WebStorm
+        # pkgs.webstorm
     ];
 
     shellHook = ''

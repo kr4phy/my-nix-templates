@@ -3,7 +3,7 @@
 let
   astronvim = pkgs.writeShellScriptBin "astronvim" ''
     project_root="''${ASTRONVIM_PROJECT_ROOT:-$PWD}"
-    config_root="$project_root/.nix/astronvim"
+    config_root="$project_root/.nix/config"
 
     export NVIM_APPNAME="astronvim"
     export XDG_CONFIG_HOME="$config_root/xdg-config"
@@ -43,6 +43,7 @@ in
     if [ ! -f "$config_dir/init.lua" ]; then
       mkdir -p "$config_dir"
       cp -R "${templateSrc}/." "$config_dir/"
+      rm -r "$config_dir/.git"
     fi
 
     echo "AstroNvim is ready to use."

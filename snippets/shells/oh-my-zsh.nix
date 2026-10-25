@@ -2,7 +2,7 @@
 
 let
   zsh = pkgs.writeShellScriptBin "zsh" ''
-    zsh_config_dir="''${ZDOTDIR:-$PWD/.nix/config/zsh}"
+    zsh_config_dir="''${ZDOTDIR:-$PWD/.nix/data/zsh}"
     zshrc="$zsh_config_dir/.zshrc"
 
     mkdir -p "$zsh_config_dir"
