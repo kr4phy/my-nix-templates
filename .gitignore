@@ -19,3 +19,4 @@ result-*
 **/*.pyc
 **/*.pyo
 **/*.pyd
+**/.ruff_cache/
