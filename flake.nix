@@ -14,6 +14,9 @@
         (import nix-modules/languages/nix/nix.nix {
           inherit pkgs;
         })
+        (import nix-modules/languages/python/python314.nix {
+          inherit pkgs;
+        })
       ];
 
       modulePackages = builtins.concatLists (

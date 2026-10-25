@@ -1,3 +1,13 @@
+/*
+METADATA_BLOCK_START
+{
+  "author": "kr4phy",
+  "description": "Nix module for Scheme development packages",
+  "inputs": {},
+  "moduleArgs": {}
+}
+METADATA_BLOCK_END
+*/
 { pkgs }:
 
 let

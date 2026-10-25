@@ -1,3 +1,20 @@
+/*
+METADATA_BLOCK_START
+{
+  "author": "kr4phy",
+  "description": "Nix module for Oh My Bash shell",
+  "inputs": {
+    "oh-my-bash": {
+      "url": "github:ohmybash/oh-my-bash",
+      "flake": false
+    }
+  },
+  "moduleArgs": {
+    "templateSrc": "oh-my-bash"
+  }
+}
+METADATA_BLOCK_END
+*/
 { pkgs, templateSrc }:
 
 let

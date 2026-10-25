@@ -1,3 +1,20 @@
+/*
+METADATA_BLOCK_START
+{
+  "author": "kr4phy",
+  "description": "Nix module for AstroNvim editor",
+  "inputs": {
+    "astronvim-template": {
+      "url": "github:AstroNvim/template",
+      "flake": false
+    }
+  },
+  "moduleArgs": {
+    "templateSrc": "astronvim-template"
+  }
+}
+METADATA_BLOCK_END
+*/
 { pkgs, templateSrc }:
 
 let
