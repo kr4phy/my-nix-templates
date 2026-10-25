@@ -10,3 +10,12 @@ result-*
 
 # Ignore Nix-specific files
 **/.nix
+
+# Ignore Nix flake lock files
+**/flake.lock
+
+# Ignore pycache and other Python-specific files
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
