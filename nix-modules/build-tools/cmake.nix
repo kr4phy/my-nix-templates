@@ -1,7 +1,9 @@
 { pkgs }:
 
-with pkgs; [
-  cmake
-  ninja
-  pkg-config
-]
+in {
+  with pkgs; [
+    cmake
+    ninja
+    pkg-config
+  ];
+}

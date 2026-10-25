@@ -43,7 +43,6 @@ in
     if [ ! -f "$config_dir/init.lua" ]; then
       mkdir -p "$config_dir"
       cp -R "${templateSrc}/." "$config_dir/"
-      rm -r "$config_dir/.git"
     fi
 
     echo "AstroNvim is ready to use."

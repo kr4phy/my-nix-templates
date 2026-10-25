@@ -1,15 +1,9 @@
 { pkgs }:
 
 in {
-    packages = [
-        pkgs.fnm
-        pkgs.pnpm
-
-        # editor for js/ts
-        pkgs.vscode
-        pkgs.vscode-fhs
-        # Uncomment this to use JetBrains WebStorm
-        # pkgs.webstorm
+    packages = with pkgs; [
+        fnm
+        pnpm
     ];
 
     shellHook = ''
@@ -17,5 +11,5 @@ in {
         fnm use
 
         echo "fnm and nodejs are ready to use."
-    ''
+    '';
 }

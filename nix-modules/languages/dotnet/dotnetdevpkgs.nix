@@ -1,6 +1,7 @@
 { pkgs }
 
-with pkgs; [
-  dotnet-sdk_10
-  powershell
-]
+in {
+  packages = with pkgs; [
+    dotnet-sdk_10
+  ];
+}

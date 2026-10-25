@@ -1,21 +1,19 @@
 { pkgs }
 
-with pkgs; [
-  # Common Lisp Implementations
-  sbcl
-  sbclPackages.coalton
-  
-  # clisp
-  # ccl
-  # ecl
+in {
+  packages = with pkgs; [
+    # Common Lisp Implementations
+    sbcl
+    sbclPackages.coalton
+    # clisp
+    # ccl
+    # ecl
 
-  rlwrap
+    rlwrap
 
-  # Utilities
-  asdf
-  # quicklisp
-  # roswell
-
-  # Editor
-  emacs
-]
+    # Utilities
+    asdf
+    # quicklisp
+    # roswell
+  ];
+}
