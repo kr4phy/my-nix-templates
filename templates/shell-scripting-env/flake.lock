@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792773339,
+        "narHash": "sha256-rZLrzrC6i+jnTAlvPZHogKDulY7WWDEv9hJeHieO7Zw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3ec636362e1816bc2f0888fa0fa2c69f1bc9e504",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "oh-my-bash": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792398832,
+        "narHash": "sha256-mhLsUG9O7u2QwdN8pyjN3K5XtScbpW/zQdgG8oABRKs=",
+        "owner": "ohmybash",
+        "repo": "oh-my-bash",
+        "rev": "4d86087c31b867a30ddaaea270804839b0988e74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ohmybash",
+        "repo": "oh-my-bash",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "oh-my-bash": "oh-my-bash"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
