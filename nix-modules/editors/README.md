@@ -1,3 +1,3 @@
 # editors/
 
-This directory contains nix snippets for editors or IDE.
+This directory contains Nix modules for editor and IDE configurations.

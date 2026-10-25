@@ -1,3 +1,3 @@
 # shells/
 
-This directory contains nix snippets for shell envs.
+This directory contains Nix modules for shell configurations and frameworks.
