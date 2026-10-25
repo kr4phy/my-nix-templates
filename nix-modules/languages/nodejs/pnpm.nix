@@ -1,6 +1,6 @@
 { pkgs }:
 
-let
+let   
 in {
   packages = with pkgs; [
     nodejs
