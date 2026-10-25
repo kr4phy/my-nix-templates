@@ -1,5 +1,6 @@
 { pkgs }:
 
+let
 in {
   packages = with pkgs; [
     # Scheme implementations

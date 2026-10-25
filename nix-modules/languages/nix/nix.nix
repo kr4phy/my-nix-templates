@@ -1,5 +1,6 @@
 { pkgs }:
 
+let
 in {
   packages = with pkgs; [
     # Assuming you have installed the Nix because this is a Nix flake.

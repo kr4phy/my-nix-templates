@@ -1,7 +1,8 @@
 { pkgs }:
 
+let
 in {
-  with pkgs; [
+  packages = with pkgs; [
     nodejs
     corepack
     yarn

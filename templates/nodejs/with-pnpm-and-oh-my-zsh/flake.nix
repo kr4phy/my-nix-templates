@@ -13,7 +13,8 @@
       modules = [
         (import ../../nix-modules/shells/oh-my-zsh.nix {
           inherit pkgs;
-        }),
+        })
+        
         (import ../../nix-modules/nodejs/pnpm.nix {
           inherit pkgs;
         })

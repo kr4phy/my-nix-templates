@@ -1,5 +1,6 @@
-{ pkgs }
+{ pkgs }:
 
+let
 in {
   packages = with pkgs; [
     # Common Lisp Implementations
