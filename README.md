@@ -21,7 +21,7 @@ This project provides Nix flake templates and reusable modules to quickly create
 ### Method A: Using the create_template.py script
 
 ```bash
-python scripts/create-template.py \
+python scripts/create_template.py \
   --use-template default-template \
   --include-module nix-modules/languages/python/python314.nix \
   --include-module nix-modules/shells/oh-my-zsh.nix \
