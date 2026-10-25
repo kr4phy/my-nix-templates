@@ -8,6 +8,9 @@ Copy this template and add modules from `nix-modules/` to the `modules` list in 
 
 ## Customization
 
+### Option A: Use the `create_template.py` script to create a new project with this template and include modules.
+
+### Option B: Manually copy this template and add modules to the `flake.nix` file.
 1. Copy modules to your project directory
 2. Import them in flake.nix:
    ```nix

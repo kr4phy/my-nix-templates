@@ -96,10 +96,10 @@ The `scripts/` directory contains tools for managing the project:
 
 ## Platform Support
 
-- Linux (x86_64): Full support
-- macOS (aarch64): Full support
-- Windows (WSL2): Full support
-- Windows (Native): Not supported
+- Linux (x86_64): Supported
+- macOS (aarch64): Not tested, but likely supported
+- Windows (WSL2): Supported
+- Windows (Native): Not supported (due to lack of Nix support)
 
 ## License
 
