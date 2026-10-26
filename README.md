@@ -90,7 +90,7 @@ The `scripts/` directory contains tools for managing the project:
 
 ## Requirements
 
-- Nix 2.35.5 or later
+- Nix 2.35.3 or later
 - Git
 - Python 3.14+ (for scripts)
 
