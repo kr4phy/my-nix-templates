@@ -37,7 +37,6 @@ python create_template.py \
 | `--include-module`, `-m` | ❌ No | - | Path to module(s) to include. Can be specified multiple times |
 | `--output-dir`, `-o` | ✅ Yes | - | Output directory for the new project |
 | `--overwrite`, `-f` | ❌ No | False | Overwrite existing files in output directory |
-| `--help`, `-h` | ❌ No | - | Show help message |
 
 ### 🎨 Examples
 
@@ -85,17 +84,16 @@ When you run `create_template.py`, it creates:
 my-project/
 ├── flake.nix              # Main flake file with your modules
 ├── flake.lock             # Lock file (auto-generated)
-├── modules/               # Copied modules
+├── nix-modules/               # Copied modules
 │   ├── python314.nix
 │   ├── oh-my-zsh.nix
 │   └── ...
-└── README.md              # Project-specific README
+└── README.md              # Existing project's README
 ```
 
 ### 💡 Tips
 
 - Use **relative paths** for module paths: `nix-modules/languages/python/python314.nix`
-- Use **absolute paths** if modules are outside the project: `/path/to/custom-module.nix`
 - Check available templates with: `ls templates/`
 - Check available modules with: `python list_modules.py`
 
@@ -110,17 +108,6 @@ my-project/
 ```bash
 python list_modules.py [options]
 ```
-
-### ⚙️ Options (WIP, NOT IMPLEMENTED)
-
-| Option | Required | Default | Description |
-|--------|----------|---------|-------------|
-| `--category`, `-c` | ❌ No | - | Filter modules by category (e.g., `languages`, `editors`, `shells`, `utilities`) |
-| `--tag`, `-t` | ❌ No | - | Filter modules by tag |
-| `--search`, `-s` | ❌ No | - | Search modules by name or description |
-| `--json`, `-j` | ❌ No | False | Output in JSON format |
-| `--tree`, `-T` | ❌ No | False | Show directory tree structure |
-| `--help`, `-h` | ❌ No | - | Show help message |
 
 ### 🎨 Examples
 
@@ -138,18 +125,8 @@ python list_modules.py
 ### 📖 Usage
 
 ```bash
-python validate_modules.py [options] [module_paths...]
+python validate_modules.py
 ```
-
-### ⚙️ Options (WIP, NOT IMPLEMENTED)
-
-| Option | Required | Default | Description |
-|--------|----------|---------|-------------|
-| `--path`, `-p` | ❌ No | `nix-modules/` | Path to modules directory to validate |
-| `--strict`, `-s` | ❌ No | False | Enable strict validation (check all recommended fields) |
-| `--fix`, `-f` | ❌ No | False | Attempt to automatically fix issues |
-| `--quiet`, `-q` | ❌ No | False | Only show errors, not warnings |
-| `--help`, `-h` | ❌ No | - | Show help message |
 
 ### 🎨 Examples
 
@@ -180,15 +157,6 @@ python validate_modules.py
    - Descriptive variable names
    - Proper indentation
    - Comment presence
-
-### 📊 Validation Levels
-
-| Level | Description | Severity |
-|-------|-------------|----------|
-| ❌ Error | Must be fixed, module won't work | Critical |
-| ⚠️ Warning | Should be fixed, may cause issues | High |
-| 💡 Info | Recommended improvement | Medium |
-| ✅ Pass | All checks passed | - |
 
 ---
 
