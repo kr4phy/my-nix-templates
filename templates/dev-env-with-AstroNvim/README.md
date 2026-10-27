@@ -1,28 +1,13 @@
 # Development Environment with AstroNvim
 
-This template provides a development environment with AstroNvim (Neovim with AstroNvim configuration).
+This flake imports `nix-modules/editors/astronvim.nix` and the AstroNvim template input. Use it from this repository so its relative module path resolves.
 
-## Features
-
-- Neovim with AstroNvim configuration
-- LSP support
-- Tree-sitter syntax highlighting
-- Autocompletion
-- Git integration
-
-## Usage
-
-```bash
-python scripts/create-template.py \
-  --use-template dev-env-with-astronvim \
-  --output-dir my-project
-
-cd my-project
+```sh
+cd templates/dev-env-with-AstroNvim
 nix develop
 astronvim
 ```
 
-## Commands
+On shell entry, the AstroNvim template is copied into `.nix/astronvim/xdg-config/astronvim` if that directory does not already contain `init.lua`. The `astronvim` command sets project-local XDG config, data, state, and cache directories under `.nix/astronvim`, then launches Neovim.
 
-- `astronvim`: Launch Neovim with AstroNvim configuration
-- `nvim`: Launch Neovim with AstroNvim configuration
+The template directory name is exactly `dev-env-with-AstroNvim`. `scripts/create_template.py` cannot currently generate this preset: its flake does not contain the marker pairs required by that script. The generator path and supported options are documented in [`default-template`](../default-template/README.md).
