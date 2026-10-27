@@ -36,7 +36,6 @@ python create_template.py \
 | `--use-template`, `-t` | ✅ Yes | - | Name of the template to use (e.g., `default-template`, `dev-env-with-astronvim`) |
 | `--include-module`, `-m` | ❌ No | - | Path to module(s) to include. Can be specified multiple times |
 | `--output-dir`, `-o` | ✅ Yes | - | Output directory for the new project |
-| `--overwrite`, `-f` | ❌ No | False | Overwrite existing files in output directory |
 
 ### 🎨 Examples
 
